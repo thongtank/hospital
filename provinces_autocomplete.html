@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Test</title>
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script src="js/jquery-ui-1.11.4.custom/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="js/jquery-ui-1.11.4.custom/jquery-ui.min.css">
+</head>
+
+<body>
+    <div class="ui-widget">
+        <label for="province">province: </label>
+        <input id="province">
+    </div>
+</body>
+<script>
+$(function() {
+    $("#province").autocomplete({
+            source: "province.php",
+            select: function(evt, ui) {
+                // console.log(ui);
+                $(this).val(ui.item.PROVINCE_NAME);
+                return false;
+            }
+        })
+        .autocomplete("instance")._renderItem = function(ul, item) {
+            return $("<li>")
+                .append(item.name)
+                .appendTo(ul);
+        };
+});
+</script>
+
+</html>
